@@ -1,37 +1,42 @@
-package test;
 import java.util.*;
+
+class GStack<T>{
+	Vector<T> list;
+	
+	GStack(){
+		list = new Vector<T>(10);
+	}
+	
+	void push(T t) {
+		list.add(t);
+	}
+	T pop() {
+		T tar = list.lastElement();
+		list.remove(list.size()-1);
+		return tar;
+	}
+}
 
 public class ans3 {
 	public static void main(String args[]) {
-		int maxStack=3;
-		int count=0;
-		int ary[]= new int[maxStack];
-		int result=0;
-		Scanner sc = new Scanner(System.in);
-		System.out.println("Please enter three integer values:");
-
-		while(true) {
-			try {
-				sc = new Scanner(System.in);
-				System.out.print(count+">>");
-				ary[count] = sc.nextInt();
-				count++;
-				
-			}
-			catch(InputMismatchException e) {
-				System.out.println("Not a integer. Please try again.");
-			}
-			finally {
-				if(count==maxStack) {
-					for(int i=0;i<maxStack;i++) {
-						result +=ary[i];
-					}
-					System.out.println("Results: "+result);
-					break;
-				}
-			}
-		}
+		GStack<String> stringStack = new GStack<String>();
+		stringStack.push("seoul");
+		stringStack.push("busan");
+		stringStack.push("LA");
 		
+		for(int n=0;n<3;n++) {
+			System.out.println(stringStack.pop());
+			
+		}
+		GStack<Integer> intStack = new GStack<Integer>();
+		intStack.push(1);
+		intStack.push(3);
+		intStack.push(5);
+		
+		for(int n=0;n<3;n++) {
+			System.out.println(intStack.pop());
+
+		}
 		
 	}
 }
