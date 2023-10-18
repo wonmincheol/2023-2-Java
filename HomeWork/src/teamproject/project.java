@@ -7,6 +7,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JProgressBar;
 import javax.swing.JRadioButton;
+import javax.swing.JTextField;
 
 import java.util.*;
 import java.awt.*;
@@ -21,19 +22,31 @@ import java.io.File;
 
 
 class jp_lock extends JPanel{
-    JLabel file_path = new JLabel();
+    JPanel file_path = new JPanel();
     File selectFile;
     JProgressBar bar;
+
+    JLabel file_addr;
+    JTextField jtf;
     public jp_lock(){
         this.setVisible(true);
         this.setLayout(new BorderLayout());
 
+        //addr load button
         JButton file_load_Button = new JButton("load file(lock)");
         file_load_Button.addActionListener(new Load_File());
         
-        file_path.setBackground(new Color(255,255,255));
-        file_path.setOpaque(true);
+        //file addr print
+        file_path.setLayout(new GridLayout(2,1));
+        file_addr = new JLabel();
+        file_addr.setBackground(new Color(255,255,255));
+        file_addr.setOpaque(true);
+        jtf = new JTextField();
+        file_path.add(file_addr);
+        file_path.add(jtf);
+                
 
+        //run button
         JButton run_Button = new JButton("run(lock)");
         run_Button.addActionListener(new run());
         
@@ -58,7 +71,7 @@ class jp_lock extends JPanel{
             if(result==JFileChooser.APPROVE_OPTION){
                 selectFile = fileChooser.getSelectedFile();
                 
-                file_path.setText(selectFile.toString());
+                file_addr.setText(selectFile.toString());
             }
         }
     }
@@ -68,6 +81,8 @@ class jp_lock extends JPanel{
             System.out.println(selectFile.toString());
             //진행상황 표시
             bar_setValue(-1);
+            //key값 획득
+            System.out.println("key : "+getkey());
         }
     }
 
@@ -80,6 +95,12 @@ class jp_lock extends JPanel{
             bar.setValue(v);
         }
     }
+
+    public String getkey(){
+        String s;
+        s = jtf.getText();
+        return s;
+    }
 }
 
 class jp_unlock extends JPanel{
@@ -87,16 +108,26 @@ class jp_unlock extends JPanel{
     File selectFile;
     JProgressBar bar;
 
+    JLabel file_addr;
+    JTextField jtf;
     public jp_unlock(){
         this.setVisible(true);
         this.setLayout(new BorderLayout());
 
+        //addr load button
         JButton file_load_Button = new JButton("load file(unlock)");
         file_load_Button.addActionListener(new Load_File());
         
-        file_path.setBackground(new Color(255,255,255));
-        file_path.setOpaque(true);
-
+        //file addr print
+        file_path.setLayout(new GridLayout(2,1));
+        file_addr = new JLabel();
+        file_addr.setBackground(new Color(255,255,255));
+        file_addr.setOpaque(true);
+        jtf = new JTextField();
+        file_path.add(file_addr);
+        file_path.add(jtf);
+        
+        //run button
         JButton run_Button = new JButton("run(unlock)");
         run_Button.addActionListener(new run());
         
@@ -120,7 +151,7 @@ class jp_unlock extends JPanel{
             if(result==JFileChooser.APPROVE_OPTION){
                 selectFile = fileChooser.getSelectedFile();
                 
-                file_path.setText(selectFile.toString());
+                file_addr.setText(selectFile.toString());
             }
         }
     }
@@ -130,6 +161,8 @@ class jp_unlock extends JPanel{
             System.out.println(selectFile.toString());
             //진행상황 표시
             bar_setValue(-1);
+            //key값 획득
+            System.out.println("key : "+getkey());
         }
     }
     public void bar_setValue(int v){
@@ -140,6 +173,12 @@ class jp_unlock extends JPanel{
         else{
             bar.setValue(v);
         }
+    }
+
+    public String getkey(){
+        String s;
+        s = jtf.getText();
+        return s;
     }
 }
 
