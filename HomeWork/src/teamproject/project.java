@@ -64,7 +64,7 @@ class jp_lock extends JPanel{
 
     private class Load_File implements ActionListener{
         public void actionPerformed(ActionEvent e){
-                //file load box
+            //file load box
             JFrame window = new JFrame();
             JFileChooser fileChooser = new JFileChooser();
             int result = fileChooser.showOpenDialog(window);
@@ -144,7 +144,7 @@ class jp_unlock extends JPanel{
 
     private class Load_File implements ActionListener{
         public void actionPerformed(ActionEvent e){
-                //file load box
+            //file load box
             JFrame window = new JFrame();
             JFileChooser fileChooser = new JFileChooser();
             int result = fileChooser.showOpenDialog(window);
