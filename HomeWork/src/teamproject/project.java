@@ -16,176 +16,172 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
 
-//DnDÎ∞©Ïãù Íµ¨ÌòÑ ÏΩîÎìú Ïã§Ìå®(Îç∞Ïù¥ÌÑ∞ Î≥ÄÌôòÏãú Î∞úÏÉùÌïòÎäî ÌòïÎ≥ÄÌôò Ïò§Î•ò)
+//DnDÎ∞©Ïãù Íµ¨ÌòÑ ÏΩîÎìú ?ã§?å®(?ç∞?ù¥?Ñ∞ Î≥??ôò?ãú Î∞úÏÉù?ïò?äî ?òïÎ≥??ôò ?ò§Î•?)
 //https://www.specialagentsqueaky.com/blog-post/mbu5p27a/2011-01-09-drag-and-dropping-files-to-java-desktop-application/
 
-
-
-class jp_lock extends JPanel{
+class jp_lock extends JPanel {
     JPanel file_path = new JPanel();
     File selectFile;
     JProgressBar bar;
 
     JLabel file_addr;
     JTextField jtf;
-    public jp_lock(){
+
+    public jp_lock() {
         this.setVisible(true);
         this.setLayout(new BorderLayout());
 
-        //addr load button
+        // addr load button
         JButton file_load_Button = new JButton("load file(lock)");
         file_load_Button.addActionListener(new Load_File());
-        
-        //file addr print
-        file_path.setLayout(new GridLayout(2,1));
+
+        // file addr print
+        file_path.setLayout(new GridLayout(2, 1));
         file_addr = new JLabel();
-        file_addr.setBackground(new Color(255,255,255));
+        file_addr.setBackground(new Color(255, 255, 255));
         file_addr.setOpaque(true);
         jtf = new JTextField();
         file_path.add(file_addr);
         file_path.add(jtf);
-                
 
-        //run button
+        // run button
         JButton run_Button = new JButton("run(lock)");
         run_Button.addActionListener(new run());
-        
+
         bar = new JProgressBar();
         bar.setValue(1);
         bar.setStringPainted(true);
 
-
-        this.add(file_load_Button,BorderLayout.WEST);
-        this.add(file_path,BorderLayout.CENTER);
-        this.add(run_Button,BorderLayout.EAST);
-        this.add(bar,BorderLayout.SOUTH);
+        this.add(file_load_Button, BorderLayout.WEST);
+        this.add(file_path, BorderLayout.CENTER);
+        this.add(run_Button, BorderLayout.EAST);
+        this.add(bar, BorderLayout.SOUTH);
 
     }
 
-    private class Load_File implements ActionListener{
-        public void actionPerformed(ActionEvent e){
-            //file load box
+    private class Load_File implements ActionListener {
+        public void actionPerformed(ActionEvent e) {
+            // file load box
             JFrame window = new JFrame();
             JFileChooser fileChooser = new JFileChooser();
             int result = fileChooser.showOpenDialog(window);
-            if(result==JFileChooser.APPROVE_OPTION){
+            if (result == JFileChooser.APPROVE_OPTION) {
                 selectFile = fileChooser.getSelectedFile();
-                
+
                 file_addr.setText(selectFile.toString());
             }
         }
     }
-    private class run implements ActionListener{
-        public void actionPerformed(ActionEvent e){
-            //ÌååÏùº Í≤ΩÎ°ú@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+    private class run implements ActionListener {
+        public void actionPerformed(ActionEvent e) {
+            // ?åå?ùº Í≤ΩÎ°ú@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
             System.out.println(selectFile.toString());
-            //ÏßÑÌñâÏÉÅÌô© ÌëúÏãú
+            // ÏßÑÌñâ?ÉÅ?ô© ?ëú?ãú
             bar_setValue(-1);
-            //keyÍ∞í ÌöçÎìù
-            System.out.println("key : "+getkey());
+            // keyÍ∞? ?öç?ìù
+            System.out.println("key : " + getkey());
         }
     }
 
-    public void bar_setValue(int v){
-        if(v==-1){
-            int val=bar.getValue();
+    public void bar_setValue(int v) {
+        if (v == -1) {
+            int val = bar.getValue();
             bar.setValue(++val);
-        }
-        else{
+        } else {
             bar.setValue(v);
         }
     }
 
-    public String getkey(){
+    public String getkey() {
         String s;
         s = jtf.getText();
         return s;
     }
 }
 
-class jp_unlock extends JPanel{
+class jp_unlock extends JPanel {
     JLabel file_path = new JLabel();
     File selectFile;
     JProgressBar bar;
 
     JLabel file_addr;
     JTextField jtf;
-    public jp_unlock(){
+
+    public jp_unlock() {
         this.setVisible(true);
         this.setLayout(new BorderLayout());
 
-        //addr load button
+        // addr load button
         JButton file_load_Button = new JButton("load file(unlock)");
         file_load_Button.addActionListener(new Load_File());
-        
-        //file addr print
-        file_path.setLayout(new GridLayout(2,1));
+
+        // file addr print
+        file_path.setLayout(new GridLayout(2, 1));
         file_addr = new JLabel();
-        file_addr.setBackground(new Color(255,255,255));
+        file_addr.setBackground(new Color(255, 255, 255));
         file_addr.setOpaque(true);
         jtf = new JTextField();
         file_path.add(file_addr);
         file_path.add(jtf);
-        
-        //run button
+
+        // run button
         JButton run_Button = new JButton("run(unlock)");
         run_Button.addActionListener(new run());
-        
+
         bar = new JProgressBar();
         bar.setValue(1);
         bar.setStringPainted(true);
-        
-        this.add(file_load_Button,BorderLayout.WEST);
-        this.add(file_path,BorderLayout.CENTER);
-        this.add(run_Button,BorderLayout.EAST);
-        this.add(bar,BorderLayout.SOUTH);
+
+        this.add(file_load_Button, BorderLayout.WEST);
+        this.add(file_path, BorderLayout.CENTER);
+        this.add(run_Button, BorderLayout.EAST);
+        this.add(bar, BorderLayout.SOUTH);
 
     }
 
-    private class Load_File implements ActionListener{
-        public void actionPerformed(ActionEvent e){
-            //file load box
+    private class Load_File implements ActionListener {
+        public void actionPerformed(ActionEvent e) {
+            // file load box
             JFrame window = new JFrame();
             JFileChooser fileChooser = new JFileChooser();
             int result = fileChooser.showOpenDialog(window);
-            if(result==JFileChooser.APPROVE_OPTION){
+            if (result == JFileChooser.APPROVE_OPTION) {
                 selectFile = fileChooser.getSelectedFile();
-                
+
                 file_addr.setText(selectFile.toString());
             }
         }
     }
-    private class run implements ActionListener{
-        public void actionPerformed(ActionEvent e){
-            //ÌååÏùº Í≤ΩÎ°ú@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+    private class run implements ActionListener {
+        public void actionPerformed(ActionEvent e) {
+            // ?åå?ùº Í≤ΩÎ°ú@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
             System.out.println(selectFile.toString());
-            //ÏßÑÌñâÏÉÅÌô© ÌëúÏãú
+            // ÏßÑÌñâ?ÉÅ?ô© ?ëú?ãú
             bar_setValue(-1);
-            //keyÍ∞í ÌöçÎìù
-            System.out.println("key : "+getkey());
+            // keyÍ∞? ?öç?ìù
+            System.out.println("key : " + getkey());
         }
     }
-    public void bar_setValue(int v){
-        if(v==-1){
-            int val=bar.getValue();
+
+    public void bar_setValue(int v) {
+        if (v == -1) {
+            int val = bar.getValue();
             bar.setValue(++val);
-        }
-        else{
+        } else {
             bar.setValue(v);
         }
     }
 
-    public String getkey(){
+    public String getkey() {
         String s;
         s = jtf.getText();
         return s;
     }
 }
 
-class GUI extends JFrame{
-
-    
-
+class GUI extends JFrame {
 
     Container ct_main = getContentPane();
     JRadioButton rb_lock = new JRadioButton("LOCK");
@@ -194,48 +190,43 @@ class GUI extends JFrame{
     JPanel top_Panel;
     JPanel ct_unlock = new JPanel();
 
-    
-
     /**
      * 
      */
-    public GUI(){
-        //radio button setting
+    public GUI() {
+        // radio button setting
         buttonGroup.add(rb_unlock);
         buttonGroup.add(rb_lock);
         rb_lock.setSelected(true);
         rb_unlock.addActionListener(new Rb_control());
         rb_lock.addActionListener(new Rb_control());
-        
-        //main
+
+        // main
         ct_main.setLayout(new BorderLayout());
 
-        
         top_Panel = new JPanel();
-        top_Panel.setLayout(new GridLayout(1,2));
+        top_Panel.setLayout(new GridLayout(1, 2));
         top_Panel.add(rb_lock);
         top_Panel.add(rb_unlock);
-       
+
         setSize(700, 150);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setVisible(true);
         setTitle("Encryption");
-        
+
         change("lock");
 
     }
 
-
-    public void change(String str){
-        if(str.equals("lock")){
+    public void change(String str) {
+        if (str.equals("lock")) {
             getContentPane().removeAll();
             setLayout(new BorderLayout());
             this.add(top_Panel, BorderLayout.NORTH);
             getContentPane().add(new jp_lock(), BorderLayout.CENTER);
             revalidate();
             repaint();
-        }
-        else{
+        } else {
             getContentPane().removeAll();
             setLayout(new BorderLayout());
             this.add(top_Panel, BorderLayout.NORTH);
@@ -246,32 +237,24 @@ class GUI extends JFrame{
         }
     }
 
+    private class Rb_control implements ActionListener {
+        public void actionPerformed(ActionEvent e) {
+            if (rb_lock.isSelected() == true) {
 
-    private class Rb_control implements ActionListener{
-        public void actionPerformed(ActionEvent e){
-            if(rb_lock.isSelected()==true){
-                
                 change("lock");
                 System.out.println("lock");
-            }
-            else{
+            } else {
                 change("unlock");
                 System.out.println("unlock");
-                
+
             }
         }
     }
 
-    
 }
-
-
-
-
 
 public class project {
-    public static void main(String args[]){
+    public static void main(String args[]) {
         new GUI();
-    }    
+    }
 }
-

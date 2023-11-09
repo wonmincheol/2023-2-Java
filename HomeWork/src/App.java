@@ -7,40 +7,34 @@ import javax.swing.border.Border;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 
+class GridLayoutF extends JFrame {
 
-class GridLayoutF extends JFrame{
-
-
-
-
-    
     JLabel index = new JLabel("test");
 
+    public GridLayoutF() {
 
-    public GridLayoutF(){
-
-        GridLayout gl = new GridLayout(5,5,5,5);
+        GridLayout gl = new GridLayout(5, 5, 5, 5);
         Container ct2 = getContentPane();
-        ct2.add(new JLabel("test"),BorderLayout.NORTH);
+        ct2.add(new JLabel("test"), BorderLayout.NORTH);
 
         JPanel ct = new JPanel();
         ct2.add(ct, BorderLayout.SOUTH);
         ct.setLayout(gl);
         JButton BackSpace = new JButton("BackSpace");
         ct.add(BackSpace);
-        
+
         ct.add(new Button());
         ct.add(new Button());
-        //CE
+        // CE
         JButton CEs = new JButton("CE");
         ct.add(CEs);
-        //C
+        // C
         JButton C = new JButton("C");
         ct.add(C);
         ct.add(new JButton("7"));
         ct.add(new JButton("8"));
         ct.add(new JButton("9"));
-        
+
         JButton dive = new JButton("/");
         ct.add(dive);
         // sqrt
@@ -74,22 +68,21 @@ class GridLayoutF extends JFrame{
         ct.add(new JButton("+"));
         ct.add(new JButton("="));
 
-        //ct2.add(ct,BorderLayout.SOUTH);
+        // ct2.add(ct,BorderLayout.SOUTH);
 
         setSize(800, 400);
         setVisible(true);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
-    public void actionPerformed(ActionEvent e){
+
+    public void actionPerformed(ActionEvent e) {
         index.setText("");
     }
 }
 
-
 public class App {
     public static void main(String[] args) throws Exception {
-                //new First();
-
+        // new First();
         new GridLayoutF();
     }
 }
